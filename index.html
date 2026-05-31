@@ -8,6 +8,61 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  #rotate-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #ffffff;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding: 40px;
+  }
+
+  #rotate-overlay .rotate-icon {
+    width: 56px;
+    height: 56px;
+    animation: rotate-hint 2s ease-in-out infinite;
+  }
+
+  #rotate-overlay .rotate-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #1a1916;
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+
+  #rotate-overlay .rotate-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: #a8a49e;
+    text-align: center;
+    line-height: 1.6;
+    max-width: 220px;
+  }
+
+  @keyframes rotate-hint {
+    0%   { transform: rotate(0deg); }
+    30%  { transform: rotate(90deg); }
+    60%  { transform: rotate(90deg); }
+    85%  { transform: rotate(0deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  @media (max-width: 700px) and (orientation: portrait) {
+    #rotate-overlay { display: flex; }
+    body { overflow: hidden; }
+  }
+
+  @media (max-width: 700px) and (orientation: landscape) {
+    #rotate-overlay { display: none; }
+    body { overflow: auto; }
+  }
+
   :root {
     --white: #ffffff;
     --off-white: #f8f7f5;
@@ -404,6 +459,17 @@
 </style>
 </head>
 <body>
+
+<div id="rotate-overlay">
+  <svg class="rotate-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="6" width="26" height="38" rx="4" stroke="#1a1916" stroke-width="2" fill="none"/>
+    <circle cx="23" cy="39" r="2" fill="#1a1916"/>
+    <path d="M42 18 C48 18 52 23 52 29 C52 35 48 40 42 40" stroke="#a8a49e" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <path d="M46 14 L42 18 L46 22" stroke="#a8a49e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </svg>
+  <div class="rotate-title">Rotate your screen</div>
+  <div class="rotate-sub">This schedule is best viewed in landscape mode</div>
+</div>
 <div class="page">
 
   <!-- Header -->
