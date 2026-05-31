@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fall 2026 Schedule — Howard University CS</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #ffffff;
+    --off-white: #f8f7f5;
+    --rule: #e8e6e1;
+    --rule-strong: #d0cdc6;
+    --text-primary: #1a1916;
+    --text-secondary: #6b6860;
+    --text-tertiary: #a8a49e;
+    --accent: #1a1916;
+    --open-bg: #f0f7f0;
+    --open-text: #2a5a2a;
+    --open-border: #b8d8b8;
+    --warn-bg: #fdf6ed;
+    --warn-text: #7a4a1a;
+    --warn-border: #e8c88a;
+    --tag-math: #eef2ff;
+    --tag-math-t: #3730a3;
+    --tag-phys: #f0fdf4;
+    --tag-phys-t: #166534;
+    --tag-cs: #eff6ff;
+    --tag-cs-t: #1e40af;
+    --tag-eng: #fefce8;
+    --tag-eng-t: #854d0e;
+    --tag-arts: #fdf4ff;
+    --tag-arts-t: #7e22ce;
+    --tag-sem: #fff7ed;
+    --tag-sem-t: #9a3412;
+    --tag-lab: #f0fdfa;
+    --tag-lab-t: #115e59;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text-primary);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 40px 80px;
+  }
+
+  /* Header */
+  .header {
+    border-bottom: 1px solid var(--rule-strong);
+    padding-bottom: 32px;
+    margin-bottom: 48px;
+  }
+
+  .header-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .header h1 strong {
+    font-weight: 500;
+  }
+
+  /* Section labels */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* Course cards */
+  .courses {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+
+  .course-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 175px 160px;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+    background: var(--white);
+    transition: background 0.12s;
+  }
+
+  .course-row:last-child { border-bottom: none; }
+  .course-row:hover { background: var(--off-white); }
+
+  .course-row.header-row {
+    background: var(--off-white);
+    border-bottom: 1px solid var(--rule-strong);
+  }
+
+  .course-row.header-row:hover { background: var(--off-white); }
+
+  .col {
+    padding: 22px 24px;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .col:last-child { border-right: none; }
+
+  .col-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    font-weight: 400;
+  }
+
+  .course-code {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+  }
+
+  .course-name {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 500;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.03em;
+    width: fit-content;
+    margin-bottom: 8px;
+  }
+
+  .professor-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .professor-note {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .days {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text-primary);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .time {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .seats-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    width: fit-content;
+  }
+
+  .seats-badge.open {
+    background: var(--open-bg);
+    color: var(--open-text);
+    border: 1px solid var(--open-border);
+  }
+
+  .seats-badge.warn {
+    background: var(--warn-bg);
+    color: var(--warn-text);
+    border: 1px solid var(--warn-border);
+  }
+
+  .seats-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    opacity: 0.7;
+  }
+
+  /* Weekly grid */
+  .week-grid {
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+
+  .week-header {
+    display: grid;
+    grid-template-columns: 72px repeat(5, 1fr);
+    background: var(--off-white);
+    border-bottom: 1px solid var(--rule-strong);
+  }
+
+  .week-header-cell {
+    padding: 10px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    border-right: 1px solid var(--rule);
+    text-align: center;
+  }
+
+  .week-header-cell:last-child { border-right: none; }
+
+  .week-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .time-row {
+    display: grid;
+    grid-template-columns: 72px repeat(5, 1fr);
+    border-bottom: 1px solid var(--rule);
+    min-height: 52px;
+  }
+
+  .time-row:last-child { border-bottom: none; }
+
+  .time-cell {
+    padding: 8px 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-tertiary);
+    border-right: 1px solid var(--rule);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    text-align: right;
+    line-height: 1.3;
+    padding-top: 10px;
+  }
+
+  .day-cell {
+    border-right: 1px solid var(--rule);
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--white);
+  }
+
+  .day-cell:last-child { border-right: none; }
+
+  .block {
+    border-radius: 6px;
+    padding: 6px 8px;
+    font-size: 10px;
+    line-height: 1.35;
+  }
+
+  .block-code {
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 1px;
+  }
+
+  .block-prof {
+    color: inherit;
+    opacity: 0.7;
+    font-size: 9.5px;
+  }
+
+  .block-math { background: var(--tag-math); color: var(--tag-math-t); border: 1px solid #c7d2fe; }
+  .block-phys { background: var(--tag-phys); color: var(--tag-phys-t); border: 1px solid #bbf7d0; }
+  .block-lab  { background: var(--tag-lab);  color: var(--tag-lab-t);  border: 1px solid #99f6e4; }
+  .block-cs   { background: var(--tag-cs);   color: var(--tag-cs-t);   border: 1px solid #bfdbfe; }
+  .block-eng  { background: var(--tag-eng);  color: var(--tag-eng-t);  border: 1px solid #fde68a; }
+  .block-arts { background: var(--tag-arts); color: var(--tag-arts-t); border: 1px solid #e9d5ff; }
+  .block-sem  { background: var(--tag-sem);  color: var(--tag-sem-t);  border: 1px solid #fed7aa; }
+
+  .empty-cell {
+    border-right: 1px solid var(--rule);
+    background: var(--white);
+  }
+
+  .empty-cell:last-child { border-right: none; }
+
+  /* Priority box */
+  .priority-section {
+    margin-bottom: 48px;
+  }
+
+  .priority-list {
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .priority-item {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    align-items: center;
+    gap: 0;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--rule);
+    gap: 16px;
+  }
+
+  .priority-item:last-child { border-bottom: none; }
+
+  .priority-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--rule-strong);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .priority-course {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .priority-reason {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  .seats-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .seats-pill.critical { background: #fef2f2; color: #991b1b; border: 1px solid #fca5a5; }
+  .seats-pill.moderate { background: var(--warn-bg); color: var(--warn-text); border: 1px solid var(--warn-border); }
+  .seats-pill.ample    { background: var(--open-bg); color: var(--open-text); border: 1px solid var(--open-border); }
+
+  /* Footer note */
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-meta">Howard University · Department of Computer Science · Fall 2026</div>
+    <h1>Freshman <strong>Course Schedule</strong></h1>
+  </div>
+
+  <!-- Course table -->
+  <div class="section-label">Course roster</div>
+  <div class="courses">
+    <div class="course-row header-row">
+      <div class="col"><span class="col-label">Course</span></div>
+      <div class="col"><span class="col-label">Instructor</span></div>
+      <div class="col"><span class="col-label">Schedule</span></div>
+      <div class="col"><span class="col-label">Availability</span></div>
+    </div>
+
+    <div class="course-row">
+      <div class="col">
+        <div class="tag" style="background:var(--tag-math);color:var(--tag-math-t);">Calculus I</div>
+        <div class="course-code">MATH 156-05</div>
+        <div class="course-name">Calculus I</div>
+      </div>
+      <div class="col">
+        <div class="professor-name">Demba Sy</div>
+        <div class="professor-note">Top-rated · Ground-up pedagogy</div>
+      </div>
+      <div class="col">
+        <div class="days">Mon · Wed · Thu · Fri</div>
+        <div class="time">1:10 – 2:00 PM</div>
+      </div>
+      <div class="col">
+        <div class="seats-badge warn">
+          Open
+          <span class="seats-count">16 seats</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-row">
+      <div class="col">
+        <div class="tag" style="background:var(--tag-phys);color:var(--tag-phys-t);">Physics</div>
+        <div class="course-code">PHYS 013-11</div>
+        <div class="course-name">Physics for Scientists & Engineers I</div>
+      </div>
+      <div class="col">
+        <div class="professor-name">Dragana Tankosic</div>
+        <div class="professor-note">Highest-rated · Open-note exams</div>
+      </div>
+      <div class="col">
+        <div class="days">Mon · Wed · Fri</div>
+        <div class="time">11:10 AM – 12:00 PM</div>
+        <div class="days" style="margin-top:6px;">Thursday</div>
+        <div class="time">11:10 AM – 1:00 PM</div>
+      </div>
+      <div class="col">
+        <div class="seats-badge open">
+          Open
+          <span class="seats-count">28 seats</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-row">
+      <div class="col">
+        <div class="tag" style="background:var(--tag-lab);color:var(--tag-lab-t);">Lab</div>
+        <div class="course-code">PHYS 023-03</div>
+        <div class="course-name">Physics for Scientists & Engineers Lab I</div>
+      </div>
+      <div class="col">
+        <div class="professor-name">Sidi Maiga</div>
+        <div class="professor-note">Lab coordinator · All sections</div>
+      </div>
+      <div class="col">
+        <div class="days">Thursday</div>
+        <div class="time">3:10 – 5:00 PM</div>
+      </div>
+      <div class="col">
+        <div class="seats-badge open">
+          Open
+          <span class="seats-count">37 seats</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-row">
+      <div class="col">
+        <div class="tag" style="background:var(--tag-cs);color:var(--tag-cs-t);">Computer Science</div>
+        <div class="course-code">CSCI 120-02</div>
+        <div class="course-name">Exploring Computer Science</div>
+      </div>
+      <div class="col">
+        <div class="professor-name">Jeremy Blackstone</div>
+        <div class="professor-note">Sole instructor · 50-min format</div>
+      </div>
+      <div class="col">
+        <div class="days">Tue · Thu</div>
+        <div class="time">9:10 – 10:00 AM</div>
+      </div>
+      <div class="col">
+        <div class="seats-badge open">
+          Open
+          <span class="seats-count">127 seats</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-row">
+      <div class="col">
+        <div class="tag" style="background:var(--tag-eng);color:var(--tag-eng-t);">Writing</div>
+        <div class="course-code">ENGW 102-47</div>
+        <div class="course-name">Expository Writing & Literacy Studies</div>
+      </div>
+      <div class="col">
+        <div class="professor-name">Jacob Sloan</div>
+        <div class="professor-note">In-person · TuTh format</div>
+      </div>
+      <div class="col">
+        <div class="days">Tue · Thu</div>
+        <div class="time">12:40 – 2:00 PM</div>
+      </div>
+      <div class="col">
+        <div class="seats-badge warn">
+          Open
+          <span class="seats-count">14 seats</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-row">
+      <div class="col">
+        <div class="tag" style="background:var(--tag-arts);color:var(--tag-arts-t);">Arts</div>
+        <div class="course-code">MUTP 100-01</div>
+        <div class="course-name">Blacks in the Arts</div>
+      </div>
+      <div class="col">
+        <div class="professor-name">Mickey Terry</div>
+        <div class="professor-note">In-person · MWF</div>
+      </div>
+      <div class="col">
+        <div class="days">Mon · Wed · Fri</div>
+        <div class="time">10:10 – 11:00 AM</div>
+      </div>
+      <div class="col">
+        <div class="seats-badge warn">
+          Open
+          <span class="seats-count">14 seats</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-row">
+      <div class="col">
+        <div class="tag" style="background:var(--tag-sem);color:var(--tag-sem-t);">Seminar</div>
+        <div class="course-code">FRSM 001-03</div>
+        <div class="course-name">Freshman Seminar</div>
+      </div>
+      <div class="col">
+        <div class="professor-name">Bahiyyah Muhammad</div>
+        <div class="professor-note">Virtual · Highly rated</div>
+      </div>
+      <div class="col">
+        <div class="days">Monday</div>
+        <div class="time">5:10 – 6:00 PM (Virtual)</div>
+      </div>
+      <div class="col">
+        <div class="seats-badge open">
+          Open
+          <span class="seats-count">479 seats</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Weekly view -->
+  <div class="section-label">Weekly view</div>
+  <div class="week-grid">
+    <div class="week-header">
+      <div class="week-header-cell">Time</div>
+      <div class="week-header-cell">Monday</div>
+      <div class="week-header-cell">Tuesday</div>
+      <div class="week-header-cell">Wednesday</div>
+      <div class="week-header-cell">Thursday</div>
+      <div class="week-header-cell">Friday</div>
+    </div>
+    <div class="week-body">
+
+      <!-- 9:10 AM -->
+      <div class="time-row">
+        <div class="time-cell">9:10<br>AM</div>
+        <div class="day-cell"></div>
+        <div class="day-cell">
+          <div class="block block-cs">
+            <span class="block-code">CSCI 120-02</span>
+            <span class="block-prof">Blackstone · 9:10–10:00</span>
+          </div>
+        </div>
+        <div class="day-cell"></div>
+        <div class="day-cell">
+          <div class="block block-cs">
+            <span class="block-code">CSCI 120-02</span>
+            <span class="block-prof">Blackstone · 9:10–10:00</span>
+          </div>
+        </div>
+        <div class="day-cell"></div>
+      </div>
+
+      <!-- 10:10 AM -->
+      <div class="time-row">
+        <div class="time-cell">10:10<br>AM</div>
+        <div class="day-cell">
+          <div class="block block-arts">
+            <span class="block-code">MUTP 100-01</span>
+            <span class="block-prof">Terry · 10:10–11:00</span>
+          </div>
+        </div>
+        <div class="day-cell"></div>
+        <div class="day-cell">
+          <div class="block block-arts">
+            <span class="block-code">MUTP 100-01</span>
+            <span class="block-prof">Terry · 10:10–11:00</span>
+          </div>
+        </div>
+        <div class="day-cell"></div>
+        <div class="day-cell">
+          <div class="block block-arts">
+            <span class="block-code">MUTP 100-01</span>
+            <span class="block-prof">Terry · 10:10–11:00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11:10 AM -->
+      <div class="time-row">
+        <div class="time-cell">11:10<br>AM</div>
+        <div class="day-cell">
+          <div class="block block-phys">
+            <span class="block-code">PHYS 013-11</span>
+            <span class="block-prof">Tankosic · 11:10–12:00</span>
+          </div>
+        </div>
+        <div class="day-cell"></div>
+        <div class="day-cell">
+          <div class="block block-phys">
+            <span class="block-code">PHYS 013-11</span>
+            <span class="block-prof">Tankosic · 11:10–12:00</span>
+          </div>
+        </div>
+        <div class="day-cell">
+          <div class="block block-phys">
+            <span class="block-code">PHYS 013-11</span>
+            <span class="block-prof">Tankosic · 11:10–1:00</span>
+          </div>
+        </div>
+        <div class="day-cell">
+          <div class="block block-phys">
+            <span class="block-code">PHYS 013-11</span>
+            <span class="block-prof">Tankosic · 11:10–12:00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12:40 PM -->
+      <div class="time-row">
+        <div class="time-cell">12:40<br>PM</div>
+        <div class="day-cell"></div>
+        <div class="day-cell">
+          <div class="block block-eng">
+            <span class="block-code">ENGW 102-47</span>
+            <span class="block-prof">Sloan · 12:40–2:00</span>
+          </div>
+        </div>
+        <div class="day-cell"></div>
+        <div class="day-cell">
+          <div class="block block-eng">
+            <span class="block-code">ENGW 102-47</span>
+            <span class="block-prof">Sloan · 12:40–2:00</span>
+          </div>
+        </div>
+        <div class="day-cell"></div>
+      </div>
+
+      <!-- 1:10 PM -->
+      <div class="time-row">
+        <div class="time-cell">1:10<br>PM</div>
+        <div class="day-cell">
+          <div class="block block-math">
+            <span class="block-code">MATH 156-05</span>
+            <span class="block-prof">Sy · 1:10–2:00</span>
+          </div>
+        </div>
+        <div class="day-cell"></div>
+        <div class="day-cell">
+          <div class="block block-math">
+            <span class="block-code">MATH 156-05</span>
+            <span class="block-prof">Sy · 1:10–2:00</span>
+          </div>
+        </div>
+        <div class="day-cell">
+          <div class="block block-math">
+            <span class="block-code">MATH 156-05</span>
+            <span class="block-prof">Sy · 1:10–2:00</span>
+          </div>
+        </div>
+        <div class="day-cell">
+          <div class="block block-math">
+            <span class="block-code">MATH 156-05</span>
+            <span class="block-prof">Sy · 1:10–2:00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3:10 PM -->
+      <div class="time-row">
+        <div class="time-cell">3:10<br>PM</div>
+        <div class="day-cell"></div>
+        <div class="day-cell"></div>
+        <div class="day-cell"></div>
+        <div class="day-cell">
+          <div class="block block-lab">
+            <span class="block-code">PHYS 023-03</span>
+            <span class="block-prof">Maiga · 3:10–5:00</span>
+          </div>
+        </div>
+        <div class="day-cell"></div>
+      </div>
+
+      <!-- 5:10 PM -->
+      <div class="time-row">
+        <div class="time-cell">5:10<br>PM</div>
+        <div class="day-cell">
+          <div class="block block-sem">
+            <span class="block-code">FRSM 001-03</span>
+            <span class="block-prof">Muhammad · Virtual</span>
+          </div>
+        </div>
+        <div class="day-cell"></div>
+        <div class="day-cell"></div>
+        <div class="day-cell"></div>
+        <div class="day-cell"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Registration priority -->
+  <div class="section-label">Registration priority</div>
+  <div class="priority-section">
+    <div class="priority-list">
+      <div class="priority-item">
+        <div class="priority-num">1</div>
+        <div>
+          <div class="priority-course">MUTP 100-01 — Mickey Terry</div>
+          <div class="priority-reason">Smallest class. Register first.</div>
+        </div>
+        <div class="seats-pill critical">14 seats</div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-num">2</div>
+        <div>
+          <div class="priority-course">ENGW 102-47 — Jacob Sloan</div>
+          <div class="priority-reason">Low seats, but backup ENGW sections exist if needed.</div>
+        </div>
+        <div class="seats-pill critical">14 seats</div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-num">3</div>
+        <div>
+          <div class="priority-course">MATH 156-05 — Demba Sy</div>
+          <div class="priority-reason">Most sought-after Calculus I instructor. Fills quickly.</div>
+        </div>
+        <div class="seats-pill moderate">16 seats</div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-num">4</div>
+        <div>
+          <div class="priority-course">PHYS 013-11 — Dragana Tankosic</div>
+          <div class="priority-reason">High demand across all science and engineering majors.</div>
+        </div>
+        <div class="seats-pill moderate">28 seats</div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-num">5</div>
+        <div>
+          <div class="priority-course">PHYS 023-03 — Sidi Maiga</div>
+          <div class="priority-reason">Largest lab section. Enroll after securing PHYS 013-11.</div>
+        </div>
+        <div class="seats-pill ample">37 seats</div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-num">6</div>
+        <div>
+          <div class="priority-course">CSCI 120-02 — Jeremy Blackstone</div>
+          <div class="priority-reason">Large lecture. Plenty of time to register.</div>
+        </div>
+        <div class="seats-pill ample">127 seats</div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-num">7</div>
+        <div>
+          <div class="priority-course">FRSM 001-03 — Bahiyyah Muhammad</div>
+          <div class="priority-reason">Virtual section. 500-seat capacity. No urgency.</div>
+        </div>
+        <div class="seats-pill ample">479 seats</div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</body>
+</html>
